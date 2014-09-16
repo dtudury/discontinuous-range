@@ -15,8 +15,8 @@ that I think pretty much sums it up
 
 ###Example
 ```
-var all_numbers = new DiscontinuousRange(1, 100);
-var bad_numbers = DiscontinuousRange(13).add(8).add(60,80);
+var all_numbers = new DiscontinuousRange(1, 100); //[ 1-100 ]
+var bad_numbers = DiscontinuousRange(13).add(8).add(60,80); //[8, 13, 60-80]
 var good_numbers = all_numbers.clone().subtract(bad_numbers);
 console.log(good_numbers.toString()); //[ 1-7, 9-12, 14-59, 81-100 ]
 var random_good_number = good_numbers.index(Math.floor(Math.random() * good_numbers.length));
