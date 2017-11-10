@@ -66,6 +66,36 @@ describe('subtract sets', function() {
 });
 
 
+describe('intersect sets', function() {
+    it('should allow intersecting numbers', function () {
+        var drange = DRange(5,20);
+        assert.equal('[ 5-20 ]', drange.toString());
+        drange.intersect(7);
+        assert.equal('[ 7 ]', drange.toString());
+    });
+    it('should allow intersecting ranges of numbers', function () {
+        var drange = DRange(1,5);
+        assert.equal('[ 1-5 ]', drange.toString());
+        drange.intersect(6,10);
+        assert.equal('[  ]', drange.toString());
+        drange.add(15,20);
+        assert.equal('[ 15-20 ]', drange.toString());
+        drange.intersect(0,18);
+        assert.equal('[ 15-18 ]', drange.toString());
+        assert.equal(drange.length, 4);
+    });
+    it('should allow intersecting another DiscontinuousRange', function () {
+        var drange = DRange(1,5);
+        drange.add(15,20);
+        var erange = DRange(3,6);
+        erange.add(17, 30);
+        drange.intersect(erange);
+        assert.equal('[ 3-5, 17-20 ]', drange.toString());
+        assert.equal(drange.length, 7);
+    });
+});
+
+
 describe('index sets', function() {
     it('should appropriately retrieve numbers in range by index', function () {
         var drange = DRange(0, 9);

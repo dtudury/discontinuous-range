@@ -122,6 +122,37 @@ DiscontinuousRange.prototype.subtract = function (a, b) {
 };
 
 
+DiscontinuousRange.prototype.intersect = function (a, b) {
+    var self = this;
+    var new_ranges = [];
+    function _intersect(subrange) {
+        var i = 0;
+        while (i < self.ranges.length && !subrange.overlaps(self.ranges[i])) {
+            i++;
+        }
+        while (i < self.ranges.length && subrange.overlaps(self.ranges[i])) {
+            var low = Math.max(self.ranges[i].low, subrange.low);
+            var high = Math.min(self.ranges[i].high, subrange.high);
+            new_ranges.push(new _SubRange(low, high));
+            i++;
+        }
+    }
+    if (a instanceof DiscontinuousRange) {
+        a.ranges.forEach(_intersect);
+    } else {
+        if (a instanceof _SubRange) {
+            _intersect(a);
+        } else {
+            if (b === undefined) b = a;
+            _intersect(new _SubRange(a, b));
+        }
+    }
+    self.ranges = new_ranges;
+    _update_length(self);
+    return this;
+};
+
+
 DiscontinuousRange.prototype.index = function (index) {
     var i = 0;
     while (i < this.ranges.length && this.ranges[i].length <= index) {
