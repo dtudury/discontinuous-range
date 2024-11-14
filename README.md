@@ -11,7 +11,7 @@ reading the test to see how this works may help.  otherwise, here's an example
 that I think pretty much sums it up
 
 
-###Example
+### Example
 ```
 var all_numbers = new DiscontinuousRange(1, 100); //[ 1-100 ]
 var bad_numbers = DiscontinuousRange(13).add(8).add(60,80); //[8, 13, 60-80]
