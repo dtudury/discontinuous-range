@@ -1,6 +1,6 @@
 {
   "name": "discontinuous-range",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "for adding, subtracting, and indexing discontinuous ranges of numbers",
   "main": "index.js",
   "types": "index.d.ts",
