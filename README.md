@@ -5,8 +5,6 @@ discontinuous-range
 DiscontinuousRange(1, 10).subtract(4, 6); // [ 1-3, 7-10 ]
 ```
 
-  [![Build Status](https://travis-ci.org/dtudury/discontinuous-range.png)](https://travis-ci.org/dtudury/discontinuous-range)
-
 this is a pretty simple module, but it exists to service another project
 so this'll be pretty lacking documentation. 
 reading the test to see how this works may help.  otherwise, here's an example
